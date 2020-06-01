@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="author" content="CA17093 WONG HUNG CHAN">
+        <meta charset="utf-8">
+        <style>
+            html{
+                box-sizing: border-box;
+                background-image: linear-gradient(to bottom, lightgreen, white);
+                background-repeat: no-repeat;
+            }
+            *, *::before, *::after{
+                box-sizing: inherit;
+            }
+
+            .container{
+                margin: 0 auto;
+                max-width: 40%;
+                border: 1px solid black;
+                padding: 15px;
+                border-radius: 10px;
+                background-image: linear-gradient(to bottom, lightblue, white);
+            }
+            input[type=number]{
+                width:70%;
+                border-radius:4px;
+                border:1px solid #ccc;
+                padding:10px;
+            }
+            input[type=button]{
+                padding:10px;
+                width:100%;
+                letter-spacing: 5px;
+                font-weight: bold;
+                cursor: pointer;
+            }
+            p{
+                font-weight: bold;
+            }
+            h1{
+                text-align: center;
+            }
+        </style>
+        <script>
+
+            function process(){
+                var weight = parseFloat(document.getElementById("weight").value);
+                var height = parseFloat(document.getElementById("height").value);
+                var category = "unknown"
+                var bmi = BMI(weight,height);
+                var bmi = bmi.toFixed(1);
+
+                if(bmi >= 30){
+                    category = "Obese";
+                }
+                else if(bmi < 30 && bmi >=25){
+                    category = "Overweight";
+                }
+                else if(bmi < 25 && bmi >= 18.5){
+                    category = "Normal Weight";
+                }
+                else if (bmi < 18.5){
+                    category = "Underweight";
+                }
+                else{
+                    category = "unknown bmi";
+                }
+
+                document.getElementById("test").innerHTML = ("Your BMI is " + bmi + " and you are currently " + category + " !!");
+
+                
+            }
+
+            function BMI(w,h){
+                return w / (h*h);
+               
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Welcome to BMI Calculator</h1>
+        <div class="container">
+            <section>
+                <p >*Kindly input your weight and height information in this section.</p>
+                <p>Input Weight: <input type="number" id="weight" required max=200 min=0 placeholder="Weight in kilograms"></p>
+                <p>Input Height: <input type="number" id="height" required placeholder="Height in meters"></p>
+                <p><input type="button" onclick="process()" value = "Process BMI "></p>
+                <p id="test">Please insert Weight and Height to generate BMI information</p>
+            </section>
+        </div>
+     
+    </body>
+</html>
